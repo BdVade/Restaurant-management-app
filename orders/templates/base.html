@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-4.5.0-dist/css/bootstrap.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-white p-5">
+        <a class="navbar-brand" href="#">Aderibigbe Victor</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                <li class="nav-item active m-3">
+                    <a class="nav-link" href="{% url 'home' %}">HOME <span class="sr-only">(current)</span></a>
+                </li>
+
+
+                <li class="nav-item m-3">
+                    <a class="nav-link" href="{% url 'manager_module' %}">Manager module</a>
+                </li>
+
+                <li class="nav-item m-3">
+                    <a class="nav-link" href="{% url 'create' %}">Counter Module</a>
+                </li>
+
+                <li class="nav-item m-3">
+                    <a class="nav-link" href="{% url 'kitchen' %}">Kitchen Module</a>
+                </li>
+
+
+
+            </ul>
+
+
+        </div>
+    </nav>
+{% block content %}
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Order{% endblock %}
+
+{% block content %}
+
+        <input name="order_details" id="order-details-input" type="text" size="100">
+        <button id="createOrder" class="btn btn-success" onclick="createOrder()">Create Order</button>
+
+
+
+{% block scripts %}
+
+<script>
+
+    const orderSocket = new WebSocket('ws://' + window.location.host + '/ws/order/');
+     orderSocket.onclose = function(e){
+     console.error('Order socket closed unexpectedly');
+     };
+
+
+     function createOrder() {
+        let data = {"message": '', "action": 'create_order'};
+        let details = document.querySelector('#order-details-input');
+        let order = details.value;
+        data.message = order;
+
+        console.log(data);
+        orderSocket.send(JSON.stringify(data));
+        details.value='';
+     };
+
+
+
+
+</script>
+{% endblock %}
+
+
+
+{% endblock %}

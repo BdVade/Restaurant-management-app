@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Manager Module{% endblock %}
+
+{% block content %}
+<h1>Users</h1>
+{% for order in orders %}
+    {{ order.details }}
+    {{ order.taker.username }}
+
+        <input type="hidden" name="order" id="{{ order.unique_number }}" value="{{ order.unique_number }}">
+        <input type="submit" value="Fulfill" onclick="fulfillOrder({{ order.unique_number }})">
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+    const orderSocket = new WebSocket('ws://' + window.location.host + '/ws/order/');
+     orderSocket.onclose = function(e){
+     console.error('Order socket closed unexpectedly');
+     };
+
+     orderSocket.onmessage = function(e){
+        const data = JSON.parse(e.data);
+        document.
+
+
+
+     function fulfillOrder(id) {
+        let data = {"number": '', "action": 'fulfill_order'};
+        let details = document.querySelector(`#${id}`);
+        let order = details.value;
+        data.number = order;
+
+        console.log(data);
+        orderSocket.send(JSON.stringify(data));
+        details.value='';
+     };
+
+
+
+
+</script>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page {% endblock %}
+
+{% block content %}
+    <h1>Orders</h1>
+    {% for order in orders %}
+        <p>Order Number:{{ order.unique_number }}</p>
+        <p>Order Details: {{ order.details }}</p>
+        <p>Order was made: {{ order.created }}</p>
+
+    {% endfor %}
+
+{% block scripts %}
+
+<script>
+
+    const orderSocket = new WebSocket('ws://' + window.location.host + '/ws/order/');
+     orderSocket.onclose = function(e){
+     console.error('Order socket closed unexpectedly');
+     };
+
+     orderSocket.onmessage = function(e){
+        const data = JSON.parse(e.data);
+        document.
+</script>
+
+{% endblock %}
+
+{% endblock %}
